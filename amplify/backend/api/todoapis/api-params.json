@@ -1,0 +1,35 @@
+{
+  "paths": [
+    {
+      "name": "/books",
+      "lambdaFunction": "booksfunction",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/books"
+    }
+  ],
+  "resourceName": "todoapis",
+  "apiName": "todoapis",
+  "functionArns": [
+    {
+      "lambdaFunction": "booksfunction"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-amplifymock-dev-181235-authRole",
+    "unAuthRoleName": "amplify-amplifymock-dev-181235-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "booksfunction",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifymock-dev-181235-authRole",
+      "UnauthRoleArn": "arn:aws:iam::431968123000:role/amplify-amplifymock-dev-181235-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::431968123000:role/amplify-amplifymock-dev-181235-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-amplifymock-dev-181235-deployment",
+      "UnauthRoleName": "amplify-amplifymock-dev-181235-unauthRole",
+      "StackName": "amplify-amplifymock-dev-181235",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:431968123000:stack/amplify-amplifymock-dev-181235/ac6a05d0-154c-11ec-ac56-06cf852acfb4",
+      "AmplifyAppId": "d3sp4akqi8ihh9"
+    },
+    "categories": {
+      "function": {
+        "booksfunction": {
+          "deploymentBucketName": "amplify-amplifymock-dev-181235-deployment",
+          "s3Key": "amplify-builds/booksfunction-5151563535424a695161-build.zip"
+        }
+      }
+    }
+  }
+}

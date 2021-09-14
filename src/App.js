@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Amplify, { API } from "aws-amplify";
 import { Container, Form, Button } from "react-bootstrap";
 import awsExport from "./aws-exports";
@@ -7,10 +7,18 @@ Amplify.configure(awsExport);
 
 function App() {
   const [book, setBook] = useState({ title: "", author: "" });
+
+  useEffect(() => {
+    (async () => {
+      const res = API.get("todoapis", "/books");
+      console.log({ res });
+    })();
+  }, []);
+  
   const addBook = async () => {
     const data = {
       body: {
-        id: Math.random().toString(36).substring(2) + Date.now().toString(36),
+        id: 1,
         title: book.title,
         author: book.author,
       },

@@ -177,15 +177,10 @@ app.post(path, function (req, res) {
     req.body["userId"] =
       req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
-  const id = Math.random().toString(36).substring(2) + Date.now().toString(36);
 
   let putItemParams = {
     TableName: tableName,
-    Item: {
-      id: id,
-      title: req.body.title,
-      author: req.body.author,
-    },
+    Item: req.body,
   };
   dynamodb.put(putItemParams, (err, data) => {
     if (err) {

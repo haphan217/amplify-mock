@@ -10,10 +10,12 @@ function App() {
   const addBook = async () => {
     const data = {
       body: {
+        id: Math.random().toString(36).substring(2) + Date.now().toString(36),
         title: book.title,
         author: book.author,
       },
     };
+    console.log(data.body);
     try {
       const res = await API.post("todoapis", "/books", data);
       console.log({ res });

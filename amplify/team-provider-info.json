@@ -15,7 +15,7 @@
       "function": {
         "booksfunction": {
           "deploymentBucketName": "amplify-amplifymock-dev-181235-deployment",
-          "s3Key": "amplify-builds/booksfunction-5151563535424a695161-build.zip"
+          "s3Key": "amplify-builds/booksfunction-4e354a4537364c703535-build.zip"
         }
       }
     }

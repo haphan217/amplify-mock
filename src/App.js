@@ -10,12 +10,7 @@ function App() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     // API.get("todoapis", "/books").then((res) => setBooks(res));
-    // API.get("todoapis", "/books/id", {
-    //   queryStringParameters: {
-    //     // OPTIONAL
-    //     id: "2",
-    //   },
-    // }).then((res) => console.log(res));
+    // API.get("todoapis", "/books/2").then((res) => console.log(res));
   }, []);
 
   const updateBook = async () => {
@@ -35,11 +30,7 @@ function App() {
   };
 
   const deleteBook = async () => {
-    API.del("todoapis", "/books", {
-      queryStringParameters: {
-        id: "2",
-      },
-    }).then((response) => {
+    API.del("todoapis", "/books/2").then((response) => {
       console.log(response);
     });
   };

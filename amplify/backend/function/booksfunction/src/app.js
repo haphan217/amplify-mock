@@ -117,7 +117,8 @@ app.get(path + "/:id", function (req, res) {
   let getItemParams = {
     TableName: tableName,
     Key: {
-      id: req.params.id,
+      id: parseInt(req.params.id),
+      title: "a",
     },
   };
 
@@ -208,7 +209,8 @@ app.delete("/books/:id", function (req, res) {
   let removeItemParams = {
     TableName: tableName,
     Key: {
-      id: parseInt(req.params.id)
+      id: parseInt(req.params.id),
+      title: "a",
     },
   };
   dynamodb.delete(removeItemParams, (err, data) => {

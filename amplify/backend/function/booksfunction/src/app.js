@@ -82,7 +82,7 @@ app.get(path, function (req, res) {
     // KeyConditions: condition,
   };
 
-  dynamodb.query(queryParams, (err, data) => {
+  dynamodb.scan(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;
       res.json({ error: "Could not load items: " + err });
@@ -96,7 +96,7 @@ app.get(path, function (req, res) {
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + hashKeyPath + sortKeyPath, function (req, res) {
+app.get(path + "/id", function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
@@ -107,17 +107,6 @@ app.get(path + hashKeyPath + sortKeyPath, function (req, res) {
       params[partitionKeyName] = convertUrlType(
         req.params[partitionKeyName],
         partitionKeyType
-      );
-    } catch (err) {
-      res.statusCode = 500;
-      res.json({ error: "Wrong column type " + err });
-    }
-  }
-  if (hasSortKey) {
-    try {
-      params[sortKeyName] = convertUrlType(
-        req.params[sortKeyName],
-        sortKeyType
       );
     } catch (err) {
       res.statusCode = 500;
@@ -196,7 +185,7 @@ app.post(path, function (req, res) {
  * HTTP remove method to delete object *
  ***************************************/
 
-app.delete(path + hashKeyPath + sortKeyPath, function (req, res) {
+app.delete(path, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
@@ -207,17 +196,6 @@ app.delete(path + hashKeyPath + sortKeyPath, function (req, res) {
       params[partitionKeyName] = convertUrlType(
         req.params[partitionKeyName],
         partitionKeyType
-      );
-    } catch (err) {
-      res.statusCode = 500;
-      res.json({ error: "Wrong column type " + err });
-    }
-  }
-  if (hasSortKey) {
-    try {
-      params[sortKeyName] = convertUrlType(
-        req.params[sortKeyName],
-        sortKeyType
       );
     } catch (err) {
       res.statusCode = 500;

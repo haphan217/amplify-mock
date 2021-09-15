@@ -7,14 +7,33 @@ Amplify.configure(awsExport);
 
 function App() {
   const [book, setBook] = useState({ title: "", author: "" });
-
+  const [books, setBooks] = useState([]);
   useEffect(() => {
-    (async () => {
-      const res = API.get("todoapis", "/books");
-      console.log({ res });
-    })();
+    // API.get("todoapis", "/books").then((res) => setBooks(res));
+    API.get("todoapis", "/books/2").then((res) => console.log(res));
   }, []);
-  
+
+  const updateBook = async () => {
+    const data = {
+      body: {
+        id: 2,
+        title: "updated title",
+      },
+    };
+    try {
+      const res = await API.put("todoapis", "/books", data);
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteBook = async () => {
+    API.del("todoapis", "/books/2").then((response) => {
+      console.log(response);
+    });
+  };
+
   const addBook = async () => {
     const data = {
       body: {
@@ -26,7 +45,7 @@ function App() {
     console.log(data.body);
     try {
       const res = await API.post("todoapis", "/books", data);
-      console.log({ res });
+      console.log(res);
     } catch (error) {
       console.error(error);
     }
@@ -62,7 +81,14 @@ function App() {
         <Button variant="primary" onClick={addBook}>
           Submit
         </Button>
+        <Button variant="primary" onClick={updateBook}>
+          Update
+        </Button>
+        <Button variant="primary" onClick={deleteBook}>
+          Delete
+        </Button>
       </Form>
+      {books.length > 0 && books.map((b) => <div>{b.title}</div>)}
     </Container>
   );
 }

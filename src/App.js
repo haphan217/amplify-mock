@@ -10,10 +10,10 @@ function App() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     // API.get("todoapis", "/books").then((res) => setBooks(res));
-    // API.get("todoapis", "/books/:id", {
+    // API.get("todoapis", "/books/id", {
     //   queryStringParameters: {
     //     // OPTIONAL
-    //     id: 2,
+    //     id: "2",
     //   },
     // }).then((res) => console.log(res));
   }, []);
@@ -23,7 +23,7 @@ function App() {
       body: {
         id: 2,
         title: "updated title",
-        author: "updated author"
+        author: "updated author",
       },
     };
     try {
@@ -37,7 +37,7 @@ function App() {
   const deleteBook = async () => {
     API.del("todoapis", "/books", {
       queryStringParameters: {
-        id: 2,
+        id: "2",
       },
     }).then((response) => {
       console.log(response);

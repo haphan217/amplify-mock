@@ -96,7 +96,7 @@ app.get(path, function (req, res) {
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + "/:id", function (req, res) {
+app.get(path + hashKeyPath, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
@@ -108,6 +108,7 @@ app.get(path + "/:id", function (req, res) {
         req.params[partitionKeyName],
         partitionKeyType
       );
+      params["title"] = "a";
     } catch (err) {
       res.statusCode = 500;
       res.json({ error: "Wrong column type " + err });
@@ -116,10 +117,7 @@ app.get(path + "/:id", function (req, res) {
 
   let getItemParams = {
     TableName: tableName,
-    Key: {
-      id: parseInt(req.params.id),
-      title: "a",
-    },
+    Key: params,
   };
 
   dynamodb.get(getItemParams, (err, data) => {
@@ -188,7 +186,7 @@ app.post(path, function (req, res) {
  * HTTP remove method to delete object *
  ***************************************/
 
-app.delete("/books/:id", function (req, res) {
+app.delete(path + hashKeyPath, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
@@ -200,6 +198,7 @@ app.delete("/books/:id", function (req, res) {
         req.params[partitionKeyName],
         partitionKeyType
       );
+      params["title"] = "a";
     } catch (err) {
       res.statusCode = 500;
       res.json({ error: "Wrong column type " + err });
@@ -208,10 +207,7 @@ app.delete("/books/:id", function (req, res) {
 
   let removeItemParams = {
     TableName: tableName,
-    Key: {
-      id: parseInt(req.params.id),
-      title: "a",
-    },
+    Key: params,
   };
   dynamodb.delete(removeItemParams, (err, data) => {
     if (err) {
